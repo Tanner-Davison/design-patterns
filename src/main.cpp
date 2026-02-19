@@ -1,31 +1,32 @@
-#include <iostream>
-#include <variant>
-
-using ReturnType = std::variant<int, bool>;
-struct IOperation {
-    virtual ReturnType ResultOf(int* beg, int* end) = 0;
-    virtual ~IOperation()                           = default;
-};
-
-class Operation : public IOperation {
-  public:
-    virtual ReturnType ResultOf(int* beg, int* end) {
-
-    };
-};
-
-class BoolOperation : public IOperation {
-  public:
-    virtual ReturnType ResultOf(int* beg, int* end) override {}
-};
-
-void Operate(IOperation* op) {
-    using namespace std;
-    int  arr[5]{};
-    auto result = op->ResultOf(arr, arr + 5);
+#include "Input.hpp"
+#include "Keyboard.hpp"
+#include <print>
+#include <thread>
+using namespace std::literals;
+void Game(Input* pInput) {
+    int count{5};
+    while (count != 0) {
+        std::print("===================\n");
+        if (pInput->Up()) {
+            std::print("Pitch up\n");
+        } else if (pInput->Down()) {
+            std::print("Pitch down\n");
+        } else {
+            std::print("Plane is level\n");
+        }
+        if (pInput->Left()) {
+            std::print("Roll left\n");
+        } else if (pInput->Right()) {
+            std::print("Roll right\n");
+        } else {
+            std::print("Plane is flying straight\n");
+        }
+        std::print("\n");
+        std::this_thread::sleep_for(1s);
+        --count;
+    }
 }
-
 int main() {
-    std::cout << "Program running " << std::endl;
-    return 0;
+    Keyboard k;
+    Game(&k);
 }

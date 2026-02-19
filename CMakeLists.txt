@@ -39,6 +39,8 @@ endif()
 # Your source files...
 set(SOURCES
     src/main.cpp
+    src/Input.cpp
+    src/Keyboard.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
