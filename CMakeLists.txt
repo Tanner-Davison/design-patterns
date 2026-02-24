@@ -36,11 +36,15 @@ else()
 endif()
 
 
-# Your source files...
+# Source files
+# GameController.cpp  — Concrete Strategy B  (Strategy pattern)
+# NullInput is header-only                   (Null Object pattern)
+# InputFactory is header-only                (Factory Method pattern)
 set(SOURCES
     src/main.cpp
     src/Input.cpp
     src/Keyboard.cpp
+    src/GameController.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
